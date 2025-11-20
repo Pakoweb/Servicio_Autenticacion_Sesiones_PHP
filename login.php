@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 // Requisito 3: Array predefinido de usuarios
 $usuarios = [
     "admin" => "1234",
-    "usuario" => "abcd"
+    "paco" => "paco"
 ];
 
 // Función para verificar credenciales (integrada)
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="card shadow-lg p-3">
         <div class="card-body">
-            <h1 class="card-title text-center text-primary mb-4">🔐 Iniciar Sesión</h1>
+            <h1 class="card-title text-center text-primary mb-4">Iniciar Sesión</h1>
             
             <?php if (!empty($mensaje_error)): ?>
                 <div class="alert alert-danger" role="alert">
