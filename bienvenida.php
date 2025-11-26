@@ -18,7 +18,7 @@ if (!verificarSesion()) {
 // Obtener los datos del usuario de la sesión
 $usuario = $_SESSION['usuario'];
 $hora_actual = date("H:i:s"); // Requisito: La hora actual
-$mensaje_adicional = "¡Tu acceso ha sido verificado y tu sesión está activa!"; // Requisito: Mensaje adicional
+$mensaje_adicional = "Inicio de sesión correcto"; // Requisito: Mensaje adicional
 ?>
 
 <!DOCTYPE html>
@@ -33,8 +33,8 @@ $mensaje_adicional = "¡Tu acceso ha sido verificado y tu sesión está activa!"
         body { background-color: #e9ecef; }
         .container { margin-top: 50px; }
         .alert-success-custom { 
-            background-color: #d4edda; 
-            color: #155724; 
+            background-color: #d5e7a9ff; 
+            color: #191f1aff; 
             border-color: #c3e6cb;
             border-radius: 1rem;
             padding: 2rem;
@@ -45,19 +45,20 @@ $mensaje_adicional = "¡Tu acceso ha sido verificado y tu sesión está activa!"
     <div class="container">
         <div class="alert alert-success-custom shadow-lg">
             <!-- Requisito: Mensaje personalizado con el nombre del usuario -->
-            <h1 class="display-5">👋 Bienvenido/a, <span class="text-primary"><?php echo htmlspecialchars($usuario); ?></span></h1>
+            <h1 class="display-5">Bienvenido/a, <span class="text-primary"><?php echo htmlspecialchars($usuario); ?></span></h1>
             <p class="lead">Sistema de Autenticación con Sesiones en PHP</p>
             <hr>
             
             <div class="row">
                 <div class="col-md-6">
-                    <p class="mb-1"><strong>👤 Usuario Autenticado:</strong> <?php echo htmlspecialchars($usuario); ?></p>
+                    <p class="mb-1"><strong>Usuario Autenticado:</strong> <?php echo htmlspecialchars($usuario); ?></p>
                 </div>
                 <div class="col-md-6">
-                    <p class="mb-1"><strong>🕒 Hora Actual:</strong> <?php echo $hora_actual; ?></p>
+                    <p class="mb-1"><strong>Hora Actual:</strong> <?php echo $hora_actual; ?></p>
                 </div>
             </div>
-            <p class="mt-2"><strong>✨ Mensaje Adicional:</strong> <em><?php echo $mensaje_adicional; ?></em></p>
+            <p class="mt-2"><em>
+                <?php echo $mensaje_adicional; ?></em></p>
         </div>
 
         <!-- Requisito 4: Enlace para cerrar sesión -->

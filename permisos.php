@@ -25,7 +25,7 @@
 <body>
     <div class="card shadow-lg p-3">
         <div class="card-body text-center">
-            <h1 class="card-title text-danger mb-4">🚫 Acceso Denegado</h1>
+            <h1 class="card-title text-danger mb-4">Acceso Denegado</h1>
             <div class="alert alert-warning" role="alert">
                 <strong>No tienes permisos</strong> para acceder a este recurso.
             </div>

@@ -1,49 +1,33 @@
 <?php
-// Requisito 1: Implementar el manejo de sesiones (session_start)
-// Debe ir al inicio del script antes de cualquier salida HTML
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
 
-// Requisito 3: Array predefinido de usuarios
+// Lista simulada de usuarios (usuario => contraseña)
 $usuarios = [
-    "admin" => "1234",
+    "admin"   => "1234",
     "paco" => "paco"
 ];
 
-// Función para verificar credenciales (integrada)
-function verificarCredenciales($usuario, $contrasena, $listaUsuarios) {
-    if (isset($listaUsuarios[$usuario]) && $listaUsuarios[$usuario] === $contrasena) {
-        return true;
-    }
-    return false;
-}
-
-// Verificar si el usuario ya está autenticado
-if (isset($_SESSION['usuario'])) {
-    // Si ya hay sesión, redirigir a bienvenida.php
+// Si el usuario ya inició sesión, lo enviamos a bienvenida
+if (isset($_SESSION["usuario"])) {
     header("Location: bienvenida.php");
-    exit;
+    exit();
 }
 
-$mensaje_error = '';
+$errores = "";
 
-// Procesar el formulario POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre_usuario = $_POST['username'] ?? '';
-    $contrasena = $_POST['password'] ?? '';
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $user = $_POST["usuario"] ?? "";
+    $pass = $_POST["password"] ?? "";
 
-    // Validación en el servidor
-    if (verificarCredenciales($nombre_usuario, $contrasena, $usuarios)) {
-        // Autenticación exitosa: establecer la variable de sesión
-        $_SESSION['usuario'] = $nombre_usuario;
-        
-        // Redirigir a la pantalla de bienvenida
+    // Validar credenciales
+    if (isset($usuarios[$user]) && $usuarios[$user] === $pass) {
+        $_SESSION["usuario"] = $user;
         header("Location: bienvenida.php");
-        exit;
+        exit();
     } else {
-        // Credenciales incorrectas
-        $mensaje_error = "Credenciales incorrectas. Inténtalo de nuevo.";
+        // Credenciales incorrectas → redirigir a permisos.php
+        header("Location: permisos.php");
+        exit();
     }
 }
 ?>
@@ -97,10 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit" class="btn btn-primary w-100 rounded-pill">Entrar</button>
             </form>
 
-            <div class="mt-3 text-center text-muted small">
-                Usuarios de prueba:<br>
-                admin / 1234, usuario / abcd
-            </div>
+            
         </div>
     </div>
 </body>
